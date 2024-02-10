@@ -3,7 +3,8 @@ import logo from '../assets/logo.png'
 
 const Header = () => {
     return (
-        <div className="navbar bg-base-100 mt-12">
+        <div className="navbar rounded-b-md">
+            {/* ------------Small Device ------------*/}
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -22,11 +23,13 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-                <Link>
-                    <img className='w-14' src={logo} alt="" />
+                <Link className='flex items-center'>
+                    <img className='w-14 p-2' src={logo} alt="" />
+                    <h1 className='sm:text-2xl text-orange-400 font-bold'>Explore User</h1>
                 </Link>
             </div>
-            <div className="navbar-center hidden lg:flex mr-24">
+            {/* ------------Large Device ------------*/}
+            <div className="navbar-center z-10 hidden lg:flex mr-24">
                 <ul className="menu menu-horizontal px-1">
                     <li className='font-semibold text-lg mr-5'><a>Home</a></li>
                     <li className='font-semibold text-lg mr-5'><a>Add User</a></li>
@@ -42,8 +45,8 @@ const Header = () => {
                     </li>
                 </ul>
             </div>
-            <div>
-            <input type="text" placeholder="Search" className="input input-bordered md:w-auto" />
+            <div className='ml-auto'>
+                <input type="text" placeholder="Search" className="input input-bordered md:w-auto w-44" />
             </div>
         </div>
     );
