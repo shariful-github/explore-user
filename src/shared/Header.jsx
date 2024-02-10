@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png'
+import { useContext } from 'react';
+import { DataContext } from '../providers/DataContext';
 
 const Header = () => {
+    const {setSearchKey} = useContext(DataContext);
+    
     return (
         <div className="navbar rounded-b-md">
             {/* ------------Small Device ------------*/}
@@ -46,7 +50,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className='ml-auto'>
-                <input type="text" placeholder="Search" className="input input-bordered md:w-auto w-44" />
+                <input onChange={(e) => setSearchKey(e.target.value)} type="text" placeholder="Search" className="input input-bordered md:w-auto w-44" />
             </div>
         </div>
     );
