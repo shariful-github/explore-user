@@ -4,8 +4,21 @@ import { useContext } from 'react';
 import { DataContext } from '../providers/DataContext';
 
 const Header = () => {
-    const {setSearchKey} = useContext(DataContext);
-    
+    const { users, setUsers, setSearchKey } = useContext(DataContext);
+
+    const sortByName = () => {
+        const sorted = [...users].sort((a, b) => a.firstName.localeCompare(b.firstName));
+        setUsers(sorted);
+    }
+    const sortByEmail = () => {
+        const sorted = [...users].sort((a, b) => a.email.localeCompare(b.email));
+        setUsers(sorted);
+    }
+    const sortByCompany = () => {
+        const sorted = [...users].sort((a, b) => a.company.name.localeCompare(b.company.name));
+        setUsers(sorted);
+    }
+
     return (
         <div className="navbar rounded-b-md">
             {/* ------------Small Device ------------*/}
@@ -20,9 +33,9 @@ const Header = () => {
                         <li>
                             <a>Sort By</a>
                             <ul className="p-2">
-                                <li><a>Name</a></li>
-                                <li><a>Email</a></li>
-                                <li><a>Company Name</a></li>
+                                <li onClick={() => sortByName()}><a>Name</a></li>
+                                <li onClick={() => sortByEmail()}><a>Email</a></li>
+                                <li onClick={() => sortByCompany()}><a>Company Name</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -41,9 +54,9 @@ const Header = () => {
                         <details>
                             <summary>Sort By</summary>
                             <ul className="p-2">
-                                <li><a>Name</a></li>
-                                <li><a>Email</a></li>
-                                <li><a>Company</a></li>
+                                <li onClick={() => sortByName()}><a>Name</a></li>
+                                <li onClick={() => sortByEmail()}><a>Email</a></li>
+                                <li onClick={() => sortByCompany()}><a>Company</a></li>
                             </ul>
                         </details>
                     </li>
