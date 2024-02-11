@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { forwardRef, useRef } from 'react';
 
 const CreateUser = () => {
+    
     return (
         <div className="glass card shrink-0 max-w-xl shadow-2xl md:mx-auto mx-5">
             <h1 className="text-2xl md:text-5xl font-bold text-center mt-5 md:mt-10">Create A User</h1>

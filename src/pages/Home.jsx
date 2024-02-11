@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import UserCard from '../shared/UserCard';
 import { DataContext } from '../providers/DataContext';
 import CreateUser from '../shared/CreateUser';
 
 const Home = () => {
-    const { users, setUsers, searchKey } = useContext(DataContext);
+    const { users, setUsers, searchKey, ref } = useContext(DataContext);
 
     useEffect(() => {
         fetch('https://dummyjson.com/users')
@@ -29,7 +29,7 @@ const Home = () => {
                 }
             </div>
             {/* Add user form */}
-            <div className='my-20'>
+            <div ref={ref} className='my-20'>
                 <CreateUser></CreateUser>
             </div>
         </div>

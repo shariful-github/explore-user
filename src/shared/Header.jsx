@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png'
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { DataContext } from '../providers/DataContext';
 
 const Header = () => {
-    const { users, setUsers, setSearchKey } = useContext(DataContext);
+    const { users, setUsers, setSearchKey, scrollToCreateUser } = useContext(DataContext);
+
 
     const sortByName = () => {
         const sorted = [...users].sort((a, b) => a.firstName.localeCompare(b.firstName));
@@ -49,7 +50,7 @@ const Header = () => {
             <div className="navbar-center z-10 hidden lg:flex mr-24">
                 <ul className="menu menu-horizontal px-1">
                     <li className='font-semibold text-lg mr-5'><Link to={'/'}>Home</Link></li>
-                    <li className='font-semibold text-lg mr-5'><a>Create User</a></li>
+                    <li className='font-semibold text-lg mr-5'><a onClick={()=>scrollToCreateUser()}>Create User</a></li>
                     <li className='font-semibold text-lg mr-5'>
                         <details>
                             <summary>Sort By</summary>
