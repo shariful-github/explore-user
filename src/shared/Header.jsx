@@ -10,14 +10,17 @@ const Header = () => {
     const homePagePath = location.pathname.includes('/users') ? false : true;
 
     const sortByName = () => {
+        setSearchKey('');
         const sorted = [...users].sort((a, b) => a.firstName.localeCompare(b.firstName));
         setUsers(sorted);
     }
     const sortByEmail = () => {
+        setSearchKey('');
         const sorted = [...users].sort((a, b) => a.email.localeCompare(b.email));
         setUsers(sorted);
     }
     const sortByCompany = () => {
+        setSearchKey('');
         const sorted = [...users].sort((a, b) => a.company.name.localeCompare(b.company.name));
         setUsers(sorted);
     }
