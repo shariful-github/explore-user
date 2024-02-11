@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png'
-import { useContext, useRef } from 'react';
+import { useContext } from 'react';
 import { DataContext } from '../providers/DataContext';
 
 const Header = () => {
     const { users, setUsers, setSearchKey, scrollToCreateUser } = useContext(DataContext);
 
+    const location = useLocation();
+    const homePagePath = location.pathname.includes('/users') ? false : true;
 
     const sortByName = () => {
         const sorted = [...users].sort((a, b) => a.firstName.localeCompare(b.firstName));
@@ -30,15 +32,17 @@ const Header = () => {
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to={'/'}>Home</Link></li>
-                        <li><a>Create User</a></li>
-                        <li>
-                            <a>Sort By</a>
-                            <ul className="p-2">
-                                <li onClick={() => sortByName()}><a>Name</a></li>
-                                <li onClick={() => sortByEmail()}><a>Email</a></li>
-                                <li onClick={() => sortByCompany()}><a>Company Name</a></li>
-                            </ul>
-                        </li>
+                        {homePagePath &&
+                            <li><a>Create User</a></li>}
+                        {homePagePath &&
+                            <li>
+                                <a>Sort By</a>
+                                <ul className="p-2">
+                                    <li onClick={() => sortByName()}><a>Name</a></li>
+                                    <li onClick={() => sortByEmail()}><a>Email</a></li>
+                                    <li onClick={() => sortByCompany()}><a>Company Name</a></li>
+                                </ul>
+                            </li>}
                     </ul>
                 </div>
                 <Link className='flex items-center'>
@@ -50,8 +54,8 @@ const Header = () => {
             <div className="navbar-center z-10 hidden lg:flex mr-24">
                 <ul className="menu menu-horizontal px-1">
                     <li className='font-semibold text-lg mr-5'><Link to={'/'}>Home</Link></li>
-                    <li className='font-semibold text-lg mr-5'><a onClick={()=>scrollToCreateUser()}>Create User</a></li>
-                    <li className='font-semibold text-lg mr-5'>
+                    {homePagePath && <li className='font-semibold text-lg mr-5'><a onClick={() => scrollToCreateUser()}>Create User</a></li>}
+                    {homePagePath && <li className='font-semibold text-lg mr-5'>
                         <details>
                             <summary>Sort By</summary>
                             <ul className="p-2">
@@ -60,11 +64,11 @@ const Header = () => {
                                 <li onClick={() => sortByCompany()}><a>Company</a></li>
                             </ul>
                         </details>
-                    </li>
+                    </li>}
                 </ul>
             </div>
             <div className='ml-auto'>
-                <input onChange={(e) => setSearchKey(e.target.value)} type="text" placeholder="Search" className="input input-bordered md:w-auto w-44" />
+                {homePagePath && <input onChange={(e) => setSearchKey(e.target.value)} type="text" placeholder="Search" className="input input-bordered md:w-auto w-44" />}
             </div>
         </div>
     );

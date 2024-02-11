@@ -8,7 +8,7 @@ const DataProvider = ({ children }) => {
     const ref = useRef(null);
 
     const scrollToCreateUser = () => {
-        ref.current.scrollIntoView({ behavior: 'smooth' });
+        ref.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
     return (

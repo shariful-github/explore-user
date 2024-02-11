@@ -5,6 +5,7 @@ import { useLoaderData } from 'react-router-dom';
 const UserDetails = () => {
     const user = useLoaderData();
     const { firstName, lastName, email, image, address, company } = user;
+    
 
     return (
         <div className='h-screen'>
